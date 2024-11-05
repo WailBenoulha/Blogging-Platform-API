@@ -6,17 +6,17 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=bnlh
-      - POSTGRES_USER=bnlh
-      - POSTGRES_PASSWORD=0000
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"  
   web:
     build: .
-    command: sh -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate &&python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
-      - ./requirements.txt:/app/requirements.txt
+      - ./requirements.txt:/code/requirements.txt
     ports:
       - "8000:8000"
     depends_on:
